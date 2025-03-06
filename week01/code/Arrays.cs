@@ -13,7 +13,16 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        double[]multiples = new double[length];
+
+        //use a bucle to go 1 by 1
+        for (int i = 0; i < length; i++)
+        {
+            //for each element in the array calculate the multiple
+            multiples[i] = number * (i + 1);
+        }
+
+        return multiples; // replace this return statement with your own
     }
 
     /// <summary>
@@ -29,5 +38,25 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        //verifi if the list is empty or have just one element
+        if (data.Count <= 1)
+            return;
+
+        //reeduce the amount so that is into the list limits
+        amount = amount % data.Count;
+
+        //if amount is 0, then the list doesnt have to move
+        if (amount == 0)
+            return;
+        
+        //create two sublist, one with the last elements and the other one with the rest
+        List<int> rightPart = data.GetRange(data.Count - amount, amount);
+        List<int> leftPart = data.GetRange(0, data.Count - amount);
+
+        //join the two sublist in the new order
+        data.Clear(); //clean the original list
+        data.AddRange(rightPart);
+        data.AddRange(leftPart);
     }
 }
